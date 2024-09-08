@@ -67,37 +67,18 @@ function nextQuestion(){
 }
 
 function showScore() {
-
-
-    
+    document.getElementById('quiz').innerHTML = `
+    <h2>Your score: ${score} out of ${quizData.length} </h2> 
+    <button id="restartButton">Restart Quiz</button> 
+    `
+    document.getElementById("restartButton").addEventListener("click", restartQuiz);
 }
 
+function restartQuiz() {
+    window.location.reload();
+ }
 
 
 
 window.onload = loadQuestion; 
 
-
-
-
-
-//         choice.disabled = false;
-//     })
-
-// function showScore() {
-//     document.getElementById('quiz').innerHTML = `
-    
-//     <h2>Your score: ${score} out of ${quizData.length} </h2> 
-//     <button id="restartButton">Restart Quiz</button>
-    
-//     `
-
-//     document.getElementById("restartButton").addEventListener("click", restartQuiz)
-// }
-
-// function restartQuiz() {
-//     window.location.reload();
-// }
-
-
-// window.onload = loadQuestion()
