@@ -31,13 +31,13 @@ function loadQuestion() {
     document.querySelector("#question").innerText =  currentQuestion+1+") "+ currentQuestionData.question;
     
     let choices =document.querySelectorAll(".choice");
-  
     choices.forEach((choice,index)=>{
         choice.textContent=currentQuestionData.choices[index];
         choice.style.background = "#007bff"
+        choice.disabled = false;
     })
-
-    document.getElementById("nextButton").style.display = "none"
+    document.getElementById("nextButton").style.display = "none";
+    
 }
 
 
@@ -46,10 +46,32 @@ function selectAnswer(index){
     let choices =document.querySelectorAll(".choice")
     if(index === currentQuestionData.correct){
         score++
-         choices[index].style.backgroundColor = "#28a745"
+        choices[index].style.backgroundColor = "#28a745"
+    }else{
+        choices[index].style.backgroundColor = "#dc3545"
+        choices[currentQuestionData.correct].style.backgroundColor = "#28a745"
     }
-
+    choices.forEach(choice => {
+                 choice.disabled = true
+             })
+     document.getElementById("nextButton").style.display = "block"
 }
+
+function nextQuestion(){
+    currentQuestion++
+    if(currentQuestion<quizData.length){
+        loadQuestion();
+    }else{
+        showScore();
+    }
+}
+
+function showScore() {
+
+
+    
+}
+
 
 
 
@@ -61,31 +83,6 @@ window.onload = loadQuestion;
 
 //         choice.disabled = false;
 //     })
-
-//         score++
-//         choices[index].style.backgroundColor = "#28a745"
-//     } else {
-//         choices[index].style.backgroundColor = "#dc3545"
-//         choices[currentQuestionData.correct].style.backgroundColor = "#28a745"
-//     }
-
-//     choices.forEach(choice => {
-//         choice.disabled = true
-//     })
-
-//     document.getElementById("nextButton").style.display = "block"
-
-// }
-
-// function nextQuestion() {
-//     currentQuestion++
-//     if (currentQuestion < quizData.length) {
-//         loadQuestion()
-//     } else {
-//         showScore()
-//     }
-// }
-
 
 // function showScore() {
 //     document.getElementById('quiz').innerHTML = `
